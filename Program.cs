@@ -46,16 +46,16 @@ namespace Lab11_5EFCoreDbContextLINQSakilaDB
 
             SakilaContext context = new SakilaContext();
 
-            // Create an array of actors and set it equal to context.Actor.ToArray();
+            // Create an array of actors and set it equal to context.Film.ToArray();
             // What this does is get all of the actor records from the database and put’s them in an array.  
             // Then, loop through the array, printing the name of each film. 
 
-            // Before Adding 3 2019 records
+            // Before Adding 3 records for 2019
             Film[] films = context.Film.ToArray();
             foreach (Film f in films)
             {
 
-                // Print the name of each film.
+                // Print the id and title of each film.
                 Console.WriteLine($"{f.film_id} {f.title}");
                 //Console.WriteLine(f.film_id + " " + f.title);
 
@@ -75,12 +75,12 @@ namespace Lab11_5EFCoreDbContextLINQSakilaDB
                 context.Film.Add(film3);
                 context.SaveChanges();
 
-                // After Adding 3 2019 records
+                // After Adding 3 records for 2019
                 films = context.Film.ToArray();
                 foreach (Film f in films)
                 {
 
-                    // Print the name of each film.
+                    // Print the id, name, and description of each film.
                     Console.WriteLine($"{f.film_id} {f.title} {f.description}");
                     //Console.WriteLine(f.film_id + " " + f.title);
 
@@ -94,6 +94,8 @@ namespace Lab11_5EFCoreDbContextLINQSakilaDB
 
             Film[] selectedFilms = allFilms.Where(f => f.release_year == "2019").ToArray();
 
+
+            // Write to html file.
             HtmlPageBuilder htmlPageBuilder = new HtmlPageBuilder();
             htmlPageBuilder.CollectThenCreateHTML(selectedFilms);
 
